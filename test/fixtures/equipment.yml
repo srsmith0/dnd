@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  character: one
+  name: MyString
+  description: MyString
+  armor_class: 1
+  damage: MyString
+  range: 1
+  armor: false
+  weapon: false
+
+two:
+  character: two
+  name: MyString
+  description: MyString
+  armor_class: 1
+  damage: MyString
+  range: 1
+  armor: false
+  weapon: false
