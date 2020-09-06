@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+  namespace :api do
+    get 'armor/:id', to: 'characters#armor'
+    get 'weapons/:id', to: 'characters#weapons'
+    get 'inventory/:id', to: 'characters#inventory'
+    get 'skills/:id', to: 'characters#skills'
+    resources :characters
+  end
+  end
