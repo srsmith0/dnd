@@ -3,6 +3,16 @@ class Api::CharactersController < ApplicationController
     render json: Character.all
   end
 
+  def filter_by_class
+    filtered_characters = []
+    Character.all.each do |c| 
+      if c.character_class == "Wizard"
+        filtered_characters << c 
+      end
+    end
+    render json: filtered_characters 
+  end
+  
   def show
     character = Character.find(params[:id])
     render json: character

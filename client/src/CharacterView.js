@@ -40,6 +40,27 @@ export default function ViewCharacter(props) {
 		});
 	}
 
+	function getAttributes() {
+		return skills.map((a) => (
+			<div>
+				<h2>Attributes</h2>
+				<p>Strength: {a.strength}</p>
+				<p>Dexterity: {a.strength}</p>
+				<p>Constitution: {a.constitution}</p>
+				<p>Intelligence: {a.intelligence}</p>
+				<p>Wisdom: {a.wisdom}</p>
+				<p>Charisma: {a.charisma}</p>
+				<p>Speed: {a.speed}</p>
+				<p>Armor Class: {totalArmor()}</p>
+			</div>
+		));
+	}
+
+	function totalArmor() {
+		let armor = 0;
+		armors.map((a) => (armor += a.armor_class));
+		return armor;
+	}
 	function getSkills() {
 		axios.get(`/api/skills/${character.id}`).then((res) => {
 			setSkills(res.data);
@@ -52,53 +73,63 @@ export default function ViewCharacter(props) {
 		});
 	}
 
+	function renderCharInfo() {
+		return (
+			<div>
+				<h1>Name: {char.name}</h1>
+				<p>Class: {char.character_class}</p>
+				<p>Level: {char.level}</p>
+				<p>Race: {char.race}</p>
+				<p> Alignment: {char.alignment}</p>
+				<p>Experience Points: {char.xp}</p>
+			</div>
+		);
+	}
+	function renderArmor() {
+		return armors.map((a) => (
+			<div>
+				<h4>Armor Name: {a.name}</h4>
+				<h6>Description: {a.description}</h6>
+				<h6>Armor Class: {a.armor_class}</h6>
+			</div>
+		));
+	}
+
+	function renderWeapons() {
+		return weapons.map((a) => (
+			<div>
+				<h4>Name: {a.name}</h4>
+				<h6>Description: {a.description}</h6>
+				<h6>Damage: {a.damage}</h6>
+				<h6>Range: {a.range}</h6>
+			</div>
+		));
+	}
+
+	function renderInventory() {
+		return inventory.map((a) => (
+			<div>
+				<h4>Name: {a.name}</h4>
+				<h6>Description: {a.description}</h6>
+			</div>
+		));
+	}
+
 	return (
 		<div>
-			<h1>Character Sheet</h1>
-			<h3>
-				Name: {char.name} Race: {char.race} Class: {char.character_class} Level: {char.level} Alignment:{' '}
-				{char.alignment} Experience Points: {char.xp}
-			</h3>
+			<button onClick={props.history.goBack}>Go Back</button>
+			{renderCharInfo()}
 			<br />
-			<h2>Attributes</h2>
-			<br />
-			<h6>Strength: {skills.map((a) => <p>{a.strength}</p>)}</h6>
-			<h6>Dexterity: {skills.map((a) => <p>{a.strength}</p>)}</h6>
-			<h6>Constitution: {skills.map((a) => <p>{a.constitution}</p>)}</h6>
-			<h6>Intelligence: {skills.map((a) => <p>{a.intelligence}</p>)}</h6>
-			<h6>Wisdom: {skills.map((a) => <p>{a.wisdom}</p>)}</h6>
-			<h6>Charisma: {skills.map((a) => <p>{a.charisma}</p>)}</h6>
-			<h6>Speed: {skills.map((a) => <p>{a.speed}</p>)}</h6>
+			{getAttributes()}
 			<hr />
-			<h2>Armor:</h2>
-			<br />
-			{armors.map((a) => (
-				<div>
-					<h4>Armor Name: {a.name}</h4>
-					<h6>Description: {a.description}</h6>
-					<h6>Armor Class: {a.armor_class}</h6>
-				</div>
-			))}
+			<h2>Armor</h2>
+			{renderArmor()}
 			<hr />
-			<h2>Weapons:</h2>
-			<br />
-			{weapons.map((a) => (
-				<div>
-					<h4>Name: {a.name}</h4>
-					<h6>Description: {a.description}</h6>
-					<h6>Damage: {a.damage}</h6>
-					<h6>Range: {a.range}</h6>
-				</div>
-			))}
+			<h2>Weapons</h2>
+			{renderWeapons()}
 			<hr />
 			<h2>Inventory</h2>
-			<br />
-			{inventory.map((a) => (
-				<div>
-					<h4>Name: {a.name}</h4>
-					<h6>Description: {a.description}</h6>
-				</div>
-			))}
+			{renderInventory()}
 		</div>
 	);
 }
