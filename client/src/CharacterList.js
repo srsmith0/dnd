@@ -33,11 +33,8 @@ const CharacterList = (props) => {
 
 	return (
 		<div>
-			<br />
-			<h1 align="center">Character's Home Page</h1>
+			<h1 align="center">All Characters</h1>
 			<hr />
-			<h2>Character Select</h2>
-			<br />
 			<button onClick={() => filterClass()}>Filter by Class</button>
 			<button onClick={() => getChars()}>Reset</button>
 			<div className="char-list">{renderChars()}</div>

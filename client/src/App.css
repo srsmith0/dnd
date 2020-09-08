@@ -2,6 +2,7 @@
 	text-align: center;
 	border: 2px black solid;
 	margin: 0.5rem;
+	border-radius: 5%;
 }
 
 .char-level-class {
@@ -12,4 +13,56 @@
 .char-list {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.char h1 {
+	text-align: center;
+}
+
+.char-info {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	text-align: center;
+	font-size: 1rem;
+}
+
+.att h2 {
+	text-align: center;
+	width: 100%;
+}
+
+.att-values {
+	font-size: 1.5rem;
+	display: flex;
+	justify-content: space-around;
+}
+
+h2 {
+	text-align: center;
+}
+.armor-section {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.armor {
+	width: 25%;
+}
+
+.weapon-section {
+	display: flex;
+	justify-content: space-evenly;
+}
+.weapons {
+	width: 25%;
+}
+
+.inventory-section {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+.inventory {
+	width: 25%;
 }

@@ -42,16 +42,26 @@ export default function ViewCharacter(props) {
 
 	function getAttributes() {
 		return skills.map((a) => (
-			<div>
+			<div className="att">
 				<h2>Attributes</h2>
-				<p>Strength: {a.strength}</p>
-				<p>Dexterity: {a.strength}</p>
-				<p>Constitution: {a.constitution}</p>
-				<p>Intelligence: {a.intelligence}</p>
-				<p>Wisdom: {a.wisdom}</p>
-				<p>Charisma: {a.charisma}</p>
-				<p>Speed: {a.speed}</p>
-				<p>Armor Class: {totalArmor()}</p>
+				<div className="att-values">
+					<div className="att-group">
+						<p>Strength: {a.strength}</p>
+						<p>Dexterity: {a.strength}</p>
+					</div>
+					<div className="att-group">
+						<p>Constitution: {a.constitution}</p>
+						<p>Intelligence: {a.intelligence}</p>
+					</div>
+					<div className="att-group">
+						<p>Wisdom: {a.wisdom}</p>
+						<p>Charisma: {a.charisma}</p>
+					</div>
+					<div className="att-group">
+						<p>Speed: {a.speed}</p>
+						<p>Armor Class: {totalArmor()}</p>
+					</div>
+				</div>
 			</div>
 		));
 	}
@@ -77,40 +87,46 @@ export default function ViewCharacter(props) {
 		return (
 			<div>
 				<h1>Name: {char.name}</h1>
-				<p>Class: {char.character_class}</p>
-				<p>Level: {char.level}</p>
-				<p>Race: {char.race}</p>
-				<p> Alignment: {char.alignment}</p>
-				<p>Experience Points: {char.xp}</p>
+				<div className="char-info">
+					<p />
+					<p>Class: {char.character_class}</p>
+					<p>Level: {char.level}</p>
+					<p>Race: {char.race}</p>
+					<p />
+					<p />
+					<p> Alignment: {char.alignment}</p>
+					<p />
+					<p>Experience Points: {char.xp}</p>
+				</div>
 			</div>
 		);
 	}
 	function renderArmor() {
 		return armors.map((a) => (
-			<div>
-				<h4>Armor Name: {a.name}</h4>
-				<h6>Description: {a.description}</h6>
-				<h6>Armor Class: {a.armor_class}</h6>
+			<div className="armor">
+				<p>Armor Name: {a.name}</p>
+				<p>Description: {a.description}</p>
+				<p>Armor Class: {a.armor_class}</p>
 			</div>
 		));
 	}
 
 	function renderWeapons() {
 		return weapons.map((a) => (
-			<div>
-				<h4>Name: {a.name}</h4>
-				<h6>Description: {a.description}</h6>
-				<h6>Damage: {a.damage}</h6>
-				<h6>Range: {a.range}</h6>
+			<div className="weapons">
+				<p>Name: {a.name}</p>
+				<p>Description: {a.description}</p>
+				<p>Damage: {a.damage}</p>
+				<p>Range: {a.range}</p>
 			</div>
 		));
 	}
 
 	function renderInventory() {
 		return inventory.map((a) => (
-			<div>
-				<h4>Name: {a.name}</h4>
-				<h6>Description: {a.description}</h6>
+			<div className="inventory">
+				<p>Name: {a.name}</p>
+				<p>Description: {a.description}</p>
 			</div>
 		));
 	}
@@ -118,18 +134,18 @@ export default function ViewCharacter(props) {
 	return (
 		<div>
 			<button onClick={props.history.goBack}>Go Back</button>
-			{renderCharInfo()}
+			<div className="char">{renderCharInfo()}</div>
 			<br />
 			{getAttributes()}
 			<hr />
 			<h2>Armor</h2>
-			{renderArmor()}
+			<div className="armor-section">{renderArmor()}</div>
 			<hr />
 			<h2>Weapons</h2>
-			{renderWeapons()}
+			<div className="weapon-section">{renderWeapons()}</div>
 			<hr />
 			<h2>Inventory</h2>
-			{renderInventory()}
+			<div className="inventory-section">{renderInventory()}</div>
 		</div>
 	);
 }
