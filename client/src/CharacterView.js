@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 
 export default function ViewCharacter(props) {
 	const [ char, setChar ] = useState([]);
@@ -133,7 +134,9 @@ export default function ViewCharacter(props) {
 
 	return (
 		<div>
-			<button onClick={props.history.goBack}>Go Back</button>
+			<Button variant="info" onClick={props.history.goBack}>
+				Go Back
+			</Button>
 			<div className="char">{renderCharInfo()}</div>
 			<br />
 			{getAttributes()}

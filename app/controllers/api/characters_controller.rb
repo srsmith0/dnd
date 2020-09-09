@@ -6,7 +6,7 @@ class Api::CharactersController < ApplicationController
   def filter_by_class
     filtered_characters = []
     Character.all.each do |c| 
-      if c.character_class == "Wizard"
+      if c.character_class == params[:character_class]
         filtered_characters << c 
       end
     end

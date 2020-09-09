@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import CharacterCard from './CharacterCard';
+import { DropdownButton, Dropdown, Button } from 'react-bootstrap';
 
 const CharacterList = (props) => {
 	const [ chars, setChars ] = useState([]);
-	const [ filter, setFilter ] = useState(false);
+	const [ charClass, setCharClass ] = useState('');
 
 	useEffect(() => {
 		getChars();
@@ -19,8 +20,8 @@ const CharacterList = (props) => {
 		return chars.map((c) => <CharacterCard character={c} />);
 	}
 
-	function filterClass() {
-		Axios.get(`/api/filter_by_class/Rogue`).then((res) => {
+	function filterClass(klass) {
+		Axios.get(`/api/filter_by_class/${klass}`).then((res) => {
 			setChars(res.data);
 		});
 	}
@@ -35,8 +36,20 @@ const CharacterList = (props) => {
 		<div>
 			<h1 align="center">All Characters</h1>
 			<hr />
-			<button onClick={() => filterClass()}>Filter by Class</button>
-			<button onClick={() => getChars()}>Reset</button>
+			<DropdownButton variant="secondary" title="Filter By Class">
+				<Dropdown.Item onClick={() => filterClass('Barbarian')}>Barbarian</Dropdown.Item>
+				<Dropdown.Item onClick={() => filterClass('Bard')}>Bard</Dropdown.Item>
+				<Dropdown.Item onClick={() => filterClass('Druid')}>Druid</Dropdown.Item>
+				<Dropdown.Item onClick={() => filterClass('Monk')}>Monk</Dropdown.Item>
+				<Dropdown.Item onClick={() => filterClass('Paladin')}>Paladin</Dropdown.Item>
+				<Dropdown.Item onClick={() => filterClass('Ranger')}>Ranger</Dropdown.Item>
+				<Dropdown.Item onClick={() => filterClass('Rogue')}>Rogue</Dropdown.Item>
+				<Dropdown.Item onClick={() => filterClass('Warlock')}>Warlock</Dropdown.Item>
+				<Dropdown.Item onClick={() => filterClass('Wizard')}>Wizard</Dropdown.Item>
+			</DropdownButton>
+			<Button variant="warning" onClick={() => getChars()}>
+				Reset
+			</Button>
 			<div className="char-list">{renderChars()}</div>
 		</div>
 	);
