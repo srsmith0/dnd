@@ -1,53 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import Axios from 'axios';
+import CharacterCard from './CharacterCard';
+import { DropdownButton, Dropdown, Button } from 'react-bootstrap';
 
 const CharacterList = (props) => {
-	const [ char, setChar ] = useState([]);
+	const [ chars, setChars ] = useState([]);
 
 	useEffect(() => {
-		axios.get(`/api/characters`).then((res) => {
-			setChar(res.data);
-		});
+		getChars();
 	}, []);
 
-	// const renderChar = (props) => {
-	//   return char.map(char => (
-	//     <ViewCharacter
-	//       key={char.id}
-	//       {...char}
-	//       deleteCharacter={deleteCharacter}
-	//     />
-	//   ))
-	// }
-	// /api/users/:user_id/characters/:id
+	function getChars() {
+		Axios.get(`/api/characters`).then((res) => {
+			setChars(res.data);
+		});
+	}
+	function renderChars() {
+		return chars.map((c) => <CharacterCard character={c} />);
+	}
 
-	// const deleteChar = (char) => {
-	//   axios.delete(`/api/users/users_id/character/${char.id}`)
-	//     .then(res => {
-	//       setChar(char.filter(c => c.id !== char.id))
-	//     })
-	// }
+	function filterClass(klass) {
+		Axios.get(`/api/filter_by_class/${klass}`).then((res) => {
+			setChars(res.data);
+			if (chars.length <= 0) {
+			}
+		});
+	}
 
 	return (
-		<div style={{ color: 'white' }}>
-			<br />
-			<h1 align="center">Character's Home Page</h1>
+		<div className="char-list-page">
+			<h1 align="center">Choose a Character</h1>
 			<hr />
-			<h2>Character Select</h2>
-			<br />
-			{char.map((c) => (
-				<h3>
-					<Link
-						to={{
-							pathname: '/character',
-							state: { character: c }
-						}}
-					>
-						{c.name}
-					</Link>
-				</h3>
-			))}
+			<div className="char-list-buttons">
+				<DropdownButton variant="secondary" title="Filter By Class" style={{ marginRight: '1rem' }}>
+					<Dropdown.Item onClick={() => filterClass('Barbarian')}>Barbarian</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Bard')}>Bard</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Druid')}>Druid</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Monk')}>Monk</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Paladin')}>Paladin</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Ranger')}>Ranger</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Rogue')}>Rogue</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Warlock')}>Warlock</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Wizard')}>Wizard</Dropdown.Item>
+				</DropdownButton>
+				<Button variant="warning" onClick={() => getChars()}>
+					Reset
+				</Button>
+			</div>
+			<div className="char-list">{renderChars()}</div>
+			<p>{chars.length <= 0 ? 'No Characters' : ''}</p>
 		</div>
 	);
 };

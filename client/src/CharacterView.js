@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 
 export default function ViewCharacter(props) {
 	const [ char, setChar ] = useState([]);
@@ -40,6 +41,37 @@ export default function ViewCharacter(props) {
 		});
 	}
 
+	function getAttributes() {
+		return skills.map((a) => (
+			<div className="att">
+				<h2>Attributes</h2>
+				<div className="att-values">
+					<div className="att-group">
+						<p>Strength: {a.strength}</p>
+						<p>Dexterity: {a.strength}</p>
+					</div>
+					<div className="att-group">
+						<p>Constitution: {a.constitution}</p>
+						<p>Intelligence: {a.intelligence}</p>
+					</div>
+					<div className="att-group">
+						<p>Wisdom: {a.wisdom}</p>
+						<p>Charisma: {a.charisma}</p>
+					</div>
+					<div className="att-group">
+						<p>Speed: {a.speed}</p>
+						<p>Armor Class: {totalArmor()}</p>
+					</div>
+				</div>
+			</div>
+		));
+	}
+
+	function totalArmor() {
+		let armor = 0;
+		armors.map((a) => (armor += a.armor_class));
+		return armor;
+	}
 	function getSkills() {
 		axios.get(`/api/skills/${character.id}`).then((res) => {
 			setSkills(res.data);
@@ -52,53 +84,71 @@ export default function ViewCharacter(props) {
 		});
 	}
 
+	function renderCharInfo() {
+		return (
+			<div>
+				<h1>Name: {char.name}</h1>
+				<div className="char-info">
+					<p />
+					<p>Class: {char.character_class}</p>
+					<p>Level: {char.level}</p>
+					<p>Race: {char.race}</p>
+					<p />
+					<p />
+					<p> Alignment: {char.alignment}</p>
+					<p />
+					<p>Experience Points: {char.xp}</p>
+				</div>
+			</div>
+		);
+	}
+	function renderArmor() {
+		return armors.map((a) => (
+			<div className="armor">
+				<p>Armor Name: {a.name}</p>
+				<p>Description: {a.description}</p>
+				<p>Armor Class: {a.armor_class}</p>
+			</div>
+		));
+	}
+
+	function renderWeapons() {
+		return weapons.map((a) => (
+			<div className="weapons">
+				<p>Name: {a.name}</p>
+				<p>Description: {a.description}</p>
+				<p>Damage: {a.damage}</p>
+				<p>Range: {a.range}</p>
+			</div>
+		));
+	}
+
+	function renderInventory() {
+		return inventory.map((a) => (
+			<div className="inventory">
+				<p>Name: {a.name}</p>
+				<p>Description: {a.description}</p>
+			</div>
+		));
+	}
+
 	return (
-		<div>
-			<h1>Character Sheet</h1>
-			<h3>
-				Name: {char.name} Race: {char.race} Class: {char.character_class} Level: {char.level} Alignment:{' '}
-				{char.alignment} Experience Points: {char.xp}
-			</h3>
+		<div className="char-page">
+			<Button variant="warning" onClick={props.history.goBack}>
+				Go Back
+			</Button>
+			<div>{renderCharInfo()}</div>
 			<br />
-			<h2>Attributes</h2>
-			<br />
-			<h6>Strength: {skills.map((a) => <p>{a.strength}</p>)}</h6>
-			<h6>Dexterity: {skills.map((a) => <p>{a.strength}</p>)}</h6>
-			<h6>Constitution: {skills.map((a) => <p>{a.constitution}</p>)}</h6>
-			<h6>Intelligence: {skills.map((a) => <p>{a.intelligence}</p>)}</h6>
-			<h6>Wisdom: {skills.map((a) => <p>{a.wisdom}</p>)}</h6>
-			<h6>Charisma: {skills.map((a) => <p>{a.charisma}</p>)}</h6>
-			<h6>Speed: {skills.map((a) => <p>{a.speed}</p>)}</h6>
+			{getAttributes()}
 			<hr />
-			<h2>Armor:</h2>
-			<br />
-			{armors.map((a) => (
-				<div>
-					<h4>Armor Name: {a.name}</h4>
-					<h6>Description: {a.description}</h6>
-					<h6>Armor Class: {a.armor_class}</h6>
-				</div>
-			))}
+			<h2>Armor</h2>
+			<div className="armor-section">{renderArmor()}</div>
 			<hr />
-			<h2>Weapons:</h2>
-			<br />
-			{weapons.map((a) => (
-				<div>
-					<h4>Name: {a.name}</h4>
-					<h6>Description: {a.description}</h6>
-					<h6>Damage: {a.damage}</h6>
-					<h6>Range: {a.range}</h6>
-				</div>
-			))}
+			<h2>Weapons</h2>
+			<div className="weapon-section">{renderWeapons()}</div>
 			<hr />
 			<h2>Inventory</h2>
-			<br />
-			{inventory.map((a) => (
-				<div>
-					<h4>Name: {a.name}</h4>
-					<h6>Description: {a.description}</h6>
-				</div>
-			))}
+			<div className="inventory-section">{renderInventory()}</div>
 		</div>
 	);
 }

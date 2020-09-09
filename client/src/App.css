@@ -1,38 +1,103 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Turret+Road&display=swap');
+body {
+	background-color: #fea61b !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.char-list-page {
+	font-family: 'Turret Road', cursive;
+}
+.char-card {
+	text-align: center;
+	border: 2px #0e0602 solid;
+	margin: 0.5rem;
+	border-radius: 5%;
+	color: #5d2c0a;
+	font-family: 'Turret Road', cursive;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+	text-decoration: none !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a:visited {
+	color: black;
 }
 
-.App-link {
-  color: #61dafb;
+a:hover {
+	color: white !important;
+	border: #5d2c0a 1px solid;
+	background-color: #fe7819 !important;
+	text-decoration: none !important;
+	border-radius: 10%;
+}
+.char-level-class {
+	display: flex;
+	justify-content: space-evenly;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.char-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.char-list-buttons {
+	display: flex;
+	justify-content: center;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Turret Road', cursive;
+}
+
+.char-page {
+	font-family: 'Turret Road', cursive;
+}
+
+.char-info {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	text-align: center;
+	font-size: 1rem;
+}
+
+.att h2 {
+	text-align: center;
+	width: 100%;
+}
+
+.att-values {
+	font-size: 1.5rem;
+	display: flex;
+	justify-content: space-around;
+}
+
+h2 {
+	text-align: center;
+}
+.armor-section {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.armor {
+	width: 25%;
+}
+
+.weapon-section {
+	display: flex;
+	justify-content: space-evenly;
+}
+.weapons {
+	width: 25%;
+}
+
+.inventory-section {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+.inventory {
+	width: 25%;
 }
