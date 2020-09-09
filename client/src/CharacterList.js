@@ -5,7 +5,6 @@ import { DropdownButton, Dropdown, Button } from 'react-bootstrap';
 
 const CharacterList = (props) => {
 	const [ chars, setChars ] = useState([]);
-	const [ charClass, setCharClass ] = useState('');
 
 	useEffect(() => {
 		getChars();
@@ -23,34 +22,33 @@ const CharacterList = (props) => {
 	function filterClass(klass) {
 		Axios.get(`/api/filter_by_class/${klass}`).then((res) => {
 			setChars(res.data);
+			if (chars.length <= 0) {
+			}
 		});
 	}
-	// const deleteChar = (char) => {
-	//   axios.delete(`/api/users/users_id/character/${char.id}`)
-	//     .then(res => {
-	//       setChar(char.filter(c => c.id !== char.id))
-	//     })
-	// }
 
 	return (
-		<div>
-			<h1 align="center">All Characters</h1>
+		<div className="char-list-page">
+			<h1 align="center">Choose a Character</h1>
 			<hr />
-			<DropdownButton variant="secondary" title="Filter By Class">
-				<Dropdown.Item onClick={() => filterClass('Barbarian')}>Barbarian</Dropdown.Item>
-				<Dropdown.Item onClick={() => filterClass('Bard')}>Bard</Dropdown.Item>
-				<Dropdown.Item onClick={() => filterClass('Druid')}>Druid</Dropdown.Item>
-				<Dropdown.Item onClick={() => filterClass('Monk')}>Monk</Dropdown.Item>
-				<Dropdown.Item onClick={() => filterClass('Paladin')}>Paladin</Dropdown.Item>
-				<Dropdown.Item onClick={() => filterClass('Ranger')}>Ranger</Dropdown.Item>
-				<Dropdown.Item onClick={() => filterClass('Rogue')}>Rogue</Dropdown.Item>
-				<Dropdown.Item onClick={() => filterClass('Warlock')}>Warlock</Dropdown.Item>
-				<Dropdown.Item onClick={() => filterClass('Wizard')}>Wizard</Dropdown.Item>
-			</DropdownButton>
-			<Button variant="warning" onClick={() => getChars()}>
-				Reset
-			</Button>
+			<div className="char-list-buttons">
+				<DropdownButton variant="secondary" title="Filter By Class" style={{ marginRight: '1rem' }}>
+					<Dropdown.Item onClick={() => filterClass('Barbarian')}>Barbarian</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Bard')}>Bard</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Druid')}>Druid</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Monk')}>Monk</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Paladin')}>Paladin</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Ranger')}>Ranger</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Rogue')}>Rogue</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Warlock')}>Warlock</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Wizard')}>Wizard</Dropdown.Item>
+				</DropdownButton>
+				<Button variant="warning" onClick={() => getChars()}>
+					Reset
+				</Button>
+			</div>
 			<div className="char-list">{renderChars()}</div>
+			<p>{chars.length <= 0 ? 'No Characters' : ''}</p>
 		</div>
 	);
 };
