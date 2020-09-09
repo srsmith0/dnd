@@ -134,7 +134,7 @@ export default function ViewCharacter(props) {
 
 	return (
 		<div className="char-page">
-			<Button variant="info" onClick={props.history.goBack}>
+			<Button variant="warning" onClick={props.history.goBack}>
 				Go Back
 			</Button>
 			<div>{renderCharInfo()}</div>
