@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import CharacterCard from './CharacterCard';
 import { DropdownButton, Dropdown, Button } from 'react-bootstrap';
+import database from './dnddb.png';
 
 const CharacterList = (props) => {
 	const [ chars, setChars ] = useState([]);
@@ -29,6 +30,11 @@ const CharacterList = (props) => {
 
 	return (
 		<div className="char-list-page">
+			<form className="db-button" method="get" action={database} target="_blank" rel="noopener noreferrer">
+				<Button variant="secondary" type="submit">
+					Database Structure
+				</Button>
+			</form>
 			<h1 align="center">Choose a Character</h1>
 			<hr />
 			<div className="char-list-buttons">
