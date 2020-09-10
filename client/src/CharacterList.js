@@ -42,10 +42,12 @@ const CharacterList = (props) => {
 					<Dropdown.Item onClick={() => filterClass('Barbarian')}>Barbarian</Dropdown.Item>
 					<Dropdown.Item onClick={() => filterClass('Bard')}>Bard</Dropdown.Item>
 					<Dropdown.Item onClick={() => filterClass('Druid')}>Druid</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Fighter')}>Fighter</Dropdown.Item>
 					<Dropdown.Item onClick={() => filterClass('Monk')}>Monk</Dropdown.Item>
 					<Dropdown.Item onClick={() => filterClass('Paladin')}>Paladin</Dropdown.Item>
 					<Dropdown.Item onClick={() => filterClass('Ranger')}>Ranger</Dropdown.Item>
 					<Dropdown.Item onClick={() => filterClass('Rogue')}>Rogue</Dropdown.Item>
+					<Dropdown.Item onClick={() => filterClass('Sorcerer')}>Sorcerer</Dropdown.Item>
 					<Dropdown.Item onClick={() => filterClass('Warlock')}>Warlock</Dropdown.Item>
 					<Dropdown.Item onClick={() => filterClass('Wizard')}>Wizard</Dropdown.Item>
 				</DropdownButton>
