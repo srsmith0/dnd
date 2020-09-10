@@ -87,7 +87,7 @@ export default function ViewCharacter(props) {
 	function renderCharInfo() {
 		return (
 			<div>
-				<h1>Name: {char.name}</h1>
+				<h1>{char.name}</h1>
 				<div className="char-info">
 					<p />
 					<p>Class: {char.character_class}</p>
@@ -105,9 +105,9 @@ export default function ViewCharacter(props) {
 	function renderArmor() {
 		return armors.map((a) => (
 			<div className="armor">
-				<p>Armor Name: {a.name}</p>
-				<p>Description: {a.description}</p>
+				<p className="armor-name">{a.name}</p>
 				<p>Armor Class: {a.armor_class}</p>
+				<p>Description: {a.description}</p>
 			</div>
 		));
 	}
@@ -115,7 +115,7 @@ export default function ViewCharacter(props) {
 	function renderWeapons() {
 		return weapons.map((a) => (
 			<div className="weapons">
-				<p>Name: {a.name}</p>
+				<p className="weapon-name">{a.name}</p>
 				<p>Description: {a.description}</p>
 				<p>Damage: {a.damage}</p>
 				<p>Range: {a.range}</p>
@@ -126,7 +126,7 @@ export default function ViewCharacter(props) {
 	function renderInventory() {
 		return inventory.map((a) => (
 			<div className="inventory">
-				<p>Name: {a.name}</p>
+				<p className="inventory-name">{a.name}</p>
 				<p>Description: {a.description}</p>
 			</div>
 		));
@@ -138,15 +138,15 @@ export default function ViewCharacter(props) {
 				Go Back
 			</Button>
 			<div>{renderCharInfo()}</div>
-			<br />
+			<hr className="hr1" />
 			{getAttributes()}
-			<hr />
+			<hr className="hr1" />
 			<h2>Armor</h2>
 			<div className="armor-section">{renderArmor()}</div>
-			<hr />
+			<hr className="hr1" />
 			<h2>Weapons</h2>
 			<div className="weapon-section">{renderWeapons()}</div>
-			<hr />
+			<hr className="hr1" />
 			<h2>Inventory</h2>
 			<div className="inventory-section">{renderInventory()}</div>
 		</div>

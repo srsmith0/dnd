@@ -48,6 +48,13 @@ a:hover {
 h1 {
 	text-align: center;
 	font-family: 'Turret Road', cursive;
+	color: #5d2c0a;
+}
+
+.hr1 {
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(152, 73, 16, 0), rgba(152, 73, 16, 0.75), rgba(152, 73, 16, 0));
 }
 
 .char-page {
@@ -59,14 +66,11 @@ h1 {
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	text-align: center;
 	font-size: 1rem;
-}
-
-.att h2 {
-	text-align: center;
-	width: 100%;
+	color: #5d2c0a;
 }
 
 .att-values {
+	color: #5d2c0a;
 	font-size: 1.5rem;
 	display: flex;
 	justify-content: space-around;
@@ -74,30 +78,126 @@ h1 {
 
 h2 {
 	text-align: center;
+	color: #5d2c0a;
 }
 .armor-section {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 }
 
 .armor {
 	width: 25%;
+	border: 1px #5d2c0a solid;
+	margin: 0.25rem;
+	border-radius: 5%;
+	background-color: #fe7819;
+	color: #5d2c0a;
+}
+
+.armor-name {
+	text-align: center;
+	font-size: 1.5rem;
 }
 
 .weapon-section {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 }
+
 .weapons {
 	width: 25%;
+	border: 1px #5d2c0a solid;
+	margin: 0.25rem;
+	border-radius: 5%;
+	background-color: #fe7819;
+	color: #5d2c0a;
+}
+
+.weapon-name {
+	text-align: center;
+	font-size: 1.5rem;
 }
 
 .inventory-section {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	flex-wrap: wrap;
 }
 
 .inventory {
 	width: 25%;
+	border: 1px #5d2c0a solid;
+	margin: 0.5rem;
+	border-radius: 5%;
+	background-color: #fe7819;
+	color: #5d2c0a;
+}
+
+.inventory-name {
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+@media only screen and (min-device-width: 480px) and (max-device-width: 1024px) {
+	.char-list {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.att-values {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		text-align: center;
+	}
+
+	.armor {
+		width: 33%;
+		margin: 1%;
+	}
+
+	.weapons {
+		width: 33%;
+		margin: 1%;
+	}
+
+	.inventory {
+		width: 33%;
+		margin: 1%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.char-list {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.att-values {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		text-align: center;
+	}
+	.armor-section {
+		flex-flow: column wrap;
+	}
+
+	.armor {
+		width: 80%;
+		margin: 2% 10%;
+	}
+	.weapon-section {
+		flex-flow: column wrap;
+	}
+
+	.weapons {
+		width: 80%;
+		margin: 2% 10%;
+	}
+
+	.inventory-section {
+		flex-flow: column wrap;
+	}
+
+	.inventory {
+		width: 80%;
+		margin: 2% 10%;
+	}
 }
