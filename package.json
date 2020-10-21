@@ -1,0 +1,27 @@
+{
+	"name": "DnD",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"directories": {
+		"lib": "lib",
+		"test": "test"
+	},
+	"scripts": {
+		"build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
+		"deploy": "cp -a client/build/. public/",
+		"heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/srsmith0/dnd.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/srsmith0/dnd/issues"
+	},
+	"homepage": "https://github.com/srsmith0/dnd#readme"
+}

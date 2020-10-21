@@ -18,12 +18,6 @@ class Api::CharactersController < ApplicationController
     render json: character
   end
 
-  def create 
-  end
-
-  def update
-  end
-
   def destroy
     render json: Character.find(params[:id]).destroy
 

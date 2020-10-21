@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     get 'filter_by_class/:character_class', to: 'characters#filter_by_class'
     resources :characters
   end
+
+  get '*other', to: 'static#index'
   end
